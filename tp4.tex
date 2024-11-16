@@ -65,6 +65,8 @@
   \newpage
 }
 
+\usepackage{circuitikz}
+
 \title{%
 \setlength{\headwidth}{\textwidth} % Hace que el encabezado tenga el mismo ancho que el contenido
 \setlength{\headheight}{15pt}  % Ajusta la altura del encabezado
@@ -97,30 +99,139 @@
         convolucion temporal y Transformada de Laplace:
 
         \begin{enumerate}[label=\alph*), left=0pt]
-            \item \fs{} ¿Que ancho de banda tiene el filtro en tiempo continuo?
+            \item \fs{} ¿Que ancho de banda tiene el filtro en tiempo continuo?\\
+
+                \begin{figure}[h]
+                    \centering
+                    \begin{circuitikz}[american voltages]
+                        % nodos
+                        \draw
+                            (0, 0)  to [short, o-, on grid]                 (1, 0)
+                                    to [R, l_=$R$, on grid]                 (3, 0)
+                                    to [L, l_=$L$, on grid]                 (7, 0)
+                                    to [C, l_=$C$, on grid]                 (7, -3)
+                                    to [short, on grid]                     (7, -3)
+                                    to [short, on grid]                     (0, -3)
+                                    to [short, o-, on grid]                 (0, -3)
+                            (0, 0)  to [open, v^>=$v_{(t)}$, on grid]       (0, -3)
+                            (7, 0)  to [short, *-, on grid]                 (9, 0)
+                                    to [short, o-, on grid]                 (9, 0)
+                            (7, -3) to [short, *-, on grid]                 (9, -3)
+                                    to [short, o-, on grid]                 (9, -3)
+                            (9, 0)  to [open, v^>=$v_{c(t)}$, on grid]      (9, -3)
+                            ;
+                    \end{circuitikz}
+
+                    \textit{Diagrama del circuito RLC.}
+                \end{figure}
+
+                Para determinar el ancho de banda del circuito, podemos utilizar la siguiente inecuacion:
+                \begin{equation}
+                    \label{ancho.de.banda}
+                    \lvert H_{(\omega)} \rvert > \frac{1}{\sqrt{2}}
+                \end{equation}
+
+                Para determinar la funcion de transferencia del sistema, primero debemos modelar el circuito. Sabiendo
+                que la tension $v(t)$ esta determinada por:
+                \begin{equation*}
+                    v_{(t)} = Ri_{(t)} + L \frac{d}{dt} i_{(t)} + \frac{1}{C} \int_{0}^{t} i_{(\tau)} d\tau
+                \end{equation*}
+
+                Si aplicamos la transformada de Fourier tal cual esta la ecuacion, nos quedaria:
+                \begin{equation*}
+                    \mathcal{F} \left\{ v_{(t)} \right\} = V_{(\omega)} = R I_{(\omega)} + j \omega L I_{(\omega)} +
+                        \frac{1}{j \omega C} I_{(\omega)}
+                \end{equation*}
+
+                Se sabe ademas, que la impedancia de un elemento electrico esta definida por:
+                \begin{equation}
+                    \label{impedancia}
+                    Z_{(\omega)} = \frac{V_{(\omega)}}{I_{(\omega)}}
+                \end{equation}
+
+                Por lo tanto, si en $V_{(\omega)}$ multiplicamos de ambos lados por $\frac{1}{I_{(\omega)}}$:
+                \begin{equation*}
+                    Z_{T(\omega)} = R + j \omega L + \frac{1}{j \omega C}\\
+                \end{equation*}
+
+                Por lo que podemos decir que:
+                \begin{align*}
+                    Z_{R(\omega)} = R \hspace{1cm}\quad
+                    Z_{L(\omega)} = j \omega L \hspace{1cm}\quad
+                    Z_{C(\omega)} = \frac{1}{j \omega C}
+                \end{align*}
+
+                Acomodando $Z_{T(\omega)}$:
+                \begin{equation*}
+                    Z_{T(\omega)} = \frac{1 + j \omega R C - \omega^2 L C}{j \omega C}
+                \end{equation*}
+
+                Para determinar $v_{c(t)}$, necesitamos, en el dominio de la frecuencia, saber la caida de potencial
+                que se genera en la resistencia y en el inductor. Para ello, debemos obtener la funcion de corriente
+                $I_{(\omega)}$ para poder obtener las caidas de tension de la resistencia y el inductor utilizando la
+                ley de Ohm. La corriente esta definida por:
+                \begin{equation}
+                    \label{corriente}
+                    I_{(\omega)} = \frac{V_{(\omega)}}{Z_{(\omega)}}
+                \end{equation}
+
+                Entonces:
+                \begin{equation*}
+                    I_{(\omega)} = V_{(\omega)} \frac{j \omega C}{1 + j \omega R C - \omega^2 L C}
+                \end{equation*}
+
+                Podemos entonces determinar las caidas de tension individuales segun las leyes de Kirchoff:
+                \begin{figure}[h]
+                    \centering
+                    \begin{minipage}{0.4\textwidth}
+                        \begin{align*}
+                            V_{R(\omega)} &= I_{(\omega)} Z_{R(\omega)}\\
+                            V_{R(\omega)} &= R V_{(\omega)} \frac{j \omega C}{1 + j \omega R C - \omega^2 L C}\\
+                            V_{R(\omega)} &= V_{(\omega)} \frac{j \omega R C}{1 + j \omega R C - \omega^2 L C}
+                        \end{align*}
+                    \end{minipage}
+                    \hspace{1cm}
+                    \begin{minipage}{0.4\textwidth}
+                        \begin{align*}
+                            V_{L(\omega)} &= I_{(\omega)} Z_{L(\omega)}\\
+                            V_{L(\omega)} &= j \omega L V_{(\omega)} \frac{j \omega C}{1 + j \omega R C - \omega^2 L C}\\
+                            V_{L(\omega)} &= V_{(\omega)} \frac{-\omega^2 L C}{1 + j \omega R C - \omega^2 L C}
+                        \end{align*}
+                    \end{minipage}
+                \end{figure}
+
+                Por Kirchoff:
+                \begin{align*}
+                    V_{C(\omega)} &= V_{(\omega)} - \left( V_{R(\omega)} + V_{L(\omega)} \right)\\
+                    V_{C(\omega)} &= V_{(\omega)} - \left( V_{(\omega)} \frac{j \omega R C}{1 + j \omega R C -
+                        \omega^2 L C} + V_{(\omega)} \frac{-\omega^2 L C}{1 + j \omega R C - \omega^2 L C} \right)\\
+                    V_{C(\omega)} &= V_{(\omega)} \left( 1 - \frac{j \omega R C - \omega^2 L C}{1 + j \omega R C -
+                        \omega^2 L C} \right)\\
+                    \frac{V_{C(\omega)}}{V_{(\omega)}} &= H_{(\omega)} = \frac{1}{1 + j \omega R C - \omega^2 L C}\\
+                \end{align*}
 
             \item \fs{} ¿Que frecuencia de muestreo deberia aplicarse para no perder informacion muestreando este
-                sistema? Evaluar hasta caida de 3dB como banda de paso.
+                sistema? Evaluar hasta caida de 3dB como banda de paso.\\
 
             \item \fs{} Considerar $T_1 = 1s$ y $T_2 = 0,1s$. Proceder a la discretizacion por dos metodos diferentes,
-                incluida la transformacion bilineal.
+                incluida la transformacion bilineal.\\
 
-            \item \fs{} Obtener la $H_{(z)}$.
+            \item \fs{} Obtener la $H_{(z)}$.\\
 
-            \item \fs{} Desarrollar la respuesta $h_{[n]}$ al impulso $\delta_{[n]}$ por medio de la transformada Z.
+            \item \fs{} Desarrollar la respuesta $h_{[n]}$ al impulso $\delta_{[n]}$ por medio de la transformada Z.\\
 
-            \item \fs{} Desarrollar la respuesta $\mu_{[n]}$ al impulso $y_{[n]}$ por medio de la transformada Z.
+            \item \fs{} Desarrollar la respuesta $\mu_{[n]}$ al impulso $y_{[n]}$ por medio de la transformada Z.\\
 
-            \item \fs{} Verificar el TVI y TVF para ambas respuestas en ambos dominios.
+            \item \fs{} Verificar el TVI y TVF para ambas respuestas en ambos dominios.\\
 
-            \item \fs{} Comparar graficamente las respuestas en tiempo continuo y tiempo discreto.
+            \item \fs{} Comparar graficamente las respuestas en tiempo continuo y tiempo discreto.\\
 
-            \item \fs{} Comparar los TVI y TVF para ambas respuestas, continua y discreta.
+            \item \fs{} Comparar los TVI y TVF para ambas respuestas, continua y discreta.\\
 
             \item \fs{} Bosquejar el diagrama de BODE correspondiente para los dos filtros, y determimar $\omega_c$
-                del filtro.
+                del filtro.\\
 
-            \item \fs{} De acuerdo a los resultados obtenidos, ¿Que tipo de filtro es?
+            \item \fs{} De acuerdo a los resultados obtenidos, ¿Que tipo de filtro es?\\
 
         \end{enumerate}
 
