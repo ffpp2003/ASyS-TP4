@@ -210,6 +210,28 @@
                     \frac{V_{C(\omega)}}{V_{(\omega)}} &= H_{(\omega)} = \frac{1}{1 + j \omega R C - \omega^2 L C}\\
                 \end{align*}
 
+                Con la expresion de $H_{(\omega)}$, podemos sacar el ancho de banda, usando (\ref{ancho.de.banda}),
+                despejando los valores de $\omega$ para los cuales se cumple:
+                \begin{gather*}
+                    \lvert H_{(\omega)} \rvert > \frac{1}{\sqrt{2}}\\
+                    \frac{1}{\sqrt{(1 - \omega^2 L C)^2 + (\omega R C)^2}} = \frac{1}{\sqrt{2}}\\
+                    (1 - \omega^2 L C)^2 + (\omega R C)^2 - 2 = 0
+                \end{gather*}
+                Utilizando un software de \textit{Computer Algebra System (CAS)}, podemos obtener las raices de la
+                anterior ecuacion, quedando:
+                \begin{equation*}
+                    \begin{bmatrix}
+                        j 2.38779440461 & -j 2.38779440461 & 0.837593050781 & -0.837593050781
+                    \end{bmatrix}
+                \end{equation*}
+                
+                De las cuales solo $0.837593050781$ es valida, debido a que no existen frecuencias angulares negativas,
+                ni con componentes imaginarias. Debido a que no hay un limite inferior valido, consideramos al 0 como
+                tal, quedando el ancho de banda del filtro:
+                \begin{equation*}
+                    BW = f_2 - f_1 = 0.837593050781 \frac{rad}{s}
+                \end{equation*}
+
             \item \fs{} ¿Que frecuencia de muestreo deberia aplicarse para no perder informacion muestreando este
                 sistema? Evaluar hasta caida de 3dB como banda de paso.\\
 
