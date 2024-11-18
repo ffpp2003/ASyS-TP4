@@ -9,6 +9,7 @@
 
 \usepackage{amsmath}%para entornos de alineación
 \usepackage{amsfonts}%para las letras lindas de matemática
+\usepackage{xfrac}%para fracciones chiquitas
 \setlength{\jot}{8pt}%modifica el interlineado
 
 \usepackage{tikz} %Librería para gráficos
@@ -151,85 +152,60 @@
 
                 Por lo tanto, si en $V_{(\omega)}$ multiplicamos de ambos lados por $\frac{1}{I_{(\omega)}}$:
                 \begin{equation*}
-                    Z_{T(\omega)} = R + j \omega L + \frac{1}{j \omega C}\\
+                    Z_{T(\omega)} = R + j \left(\omega L - \frac{1}{\omega C}\right)\\
                 \end{equation*}
 
-                Por lo que podemos decir que:
-                \begin{align*}
-                    Z_{R(\omega)} = R \hspace{1cm}\quad
-                    Z_{L(\omega)} = j \omega L \hspace{1cm}\quad
-                    Z_{C(\omega)} = \frac{1}{j \omega C}
-                \end{align*}
-
-                Acomodando $Z_{T(\omega)}$:
-                \begin{equation*}
-                    Z_{T(\omega)} = \frac{1 + j \omega R C - \omega^2 L C}{j \omega C}
-                \end{equation*}
-
-                Para determinar $v_{c(t)}$, necesitamos, en el dominio de la frecuencia, saber la caida de potencial
-                que se genera en la resistencia y en el inductor. Para ello, debemos obtener la funcion de corriente
-                $I_{(\omega)}$ para poder obtener las caidas de tension de la resistencia y el inductor utilizando la
-                ley de Ohm. La corriente esta definida por:
-                \begin{equation}
-                    \label{corriente}
-                    I_{(\omega)} = \frac{V_{(\omega)}}{Z_{(\omega)}}
-                \end{equation}
+                El valor minimo de $Z_{(\omega)}$ se va a alcanzar cuando la parte imaginaria sea nula. Esto significa
+                que cuando $Z_{(\omega)}$ sea minima, la intensidad sera maxima, y por lo tanto se podra determinar la
+                frecuencia de corte $\omega_c$:
+                \begin{gather*}
+                    \omega L - \frac{1}{\omega C} = 0\\
+                    \omega L = \frac{1}{\omega C}\\
+                    \omega^2 = \frac{1}{LC}\\
+                    \omega_c = \sqrt{\frac{1}{LC}}
+                \end{gather*}
 
                 Entonces:
                 \begin{equation*}
-                    I_{(\omega)} = V_{(\omega)} \frac{j \omega C}{1 + j \omega R C - \omega^2 L C}
+                    Z_{T(\omega_c)} = R
                 \end{equation*}
 
-                Podemos entonces determinar las caidas de tension individuales segun las leyes de Kirchoff:
-                \begin{figure}[h]
-                    \centering
-                    \begin{minipage}{0.4\textwidth}
-                        \begin{align*}
-                            V_{R(\omega)} &= I_{(\omega)} Z_{R(\omega)}\\
-                            V_{R(\omega)} &= R V_{(\omega)} \frac{j \omega C}{1 + j \omega R C - \omega^2 L C}\\
-                            V_{R(\omega)} &= V_{(\omega)} \frac{j \omega R C}{1 + j \omega R C - \omega^2 L C}
-                        \end{align*}
-                    \end{minipage}
-                    \hspace{1cm}
-                    \begin{minipage}{0.4\textwidth}
-                        \begin{align*}
-                            V_{L(\omega)} &= I_{(\omega)} Z_{L(\omega)}\\
-                            V_{L(\omega)} &= j \omega L V_{(\omega)} \frac{j \omega C}{1 + j \omega R C - \omega^2 L C}\\
-                            V_{L(\omega)} &= V_{(\omega)} \frac{-\omega^2 L C}{1 + j \omega R C - \omega^2 L C}
-                        \end{align*}
-                    \end{minipage}
-                \end{figure}
+                Otra forma de definir el ancho de banda es:
+                \begin{equation}
+                    \label{ancho.de.banda.2}
+                    BW = \omega_2 - \omega_1
+                \end{equation}
 
-                Por Kirchoff:
+                Donde
+                \begin{equation*}
+                    \lvert I_{(\omega_2)} \rvert = \lvert I_{(\omega_1)} \rvert = \frac{\lvert I_{(\omega_c)} \rvert}
+                        {\sqrt{2}}
+                \end{equation*}
+
+                Usando (\ref{impedancia}), podemos encontrar las intensidades respectivas, donde su modulo sera igual a
+                $\frac{\lvert I_{(\omega_c)} \rvert}{\sqrt{2}}$
                 \begin{align*}
-                    V_{C(\omega)} &= V_{(\omega)} - \left( V_{R(\omega)} + V_{L(\omega)} \right)\\
-                    V_{C(\omega)} &= V_{(\omega)} - \left( V_{(\omega)} \frac{j \omega R C}{1 + j \omega R C -
-                        \omega^2 L C} + V_{(\omega)} \frac{-\omega^2 L C}{1 + j \omega R C - \omega^2 L C} \right)\\
-                    V_{C(\omega)} &= V_{(\omega)} \left( 1 - \frac{j \omega R C - \omega^2 L C}{1 + j \omega R C -
-                        \omega^2 L C} \right)\\
-                    \frac{V_{C(\omega)}}{V_{(\omega)}} &= H_{(\omega)} = \frac{1}{1 + j \omega R C - \omega^2 L C}\\
+                    \left\lvert \frac{V_{(\omega)}}{Z_{(\omega)}} \right\rvert &=
+                        \frac{1}{\sqrt{2}} \left\lvert \frac{V_{(\omega)}}{Z_{(\omega_c)}} \right\rvert\\
+                    \frac{1}{\lvert Z_{(\omega)} \rvert} &= \frac{1}{\sqrt{2}} \frac{1}{\lvert Z_{(\omega_c)} \rvert}\\
+                    \lvert Z_{(\omega)} \rvert &= \sqrt{2} \lvert Z_{(\omega_c)} \rvert\\
+                    \sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2} &= \sqrt{2} R\\
+                    R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2 &= 2 R^2\\
+                    (\omega L)^2 - \left(R^2 + \frac{2 L}{C}\right) + \omega^{-2} C^{-2} &= 0\\
+                    \omega^4 L^2 - \omega^2 \left(\frac{R^2 C + 2 L}{C}\right) + C^{-2} &= 0\\
                 \end{align*}
 
-                Con la expresion de $H_{(\omega)}$, podemos sacar el ancho de banda, usando (\ref{ancho.de.banda}),
-                despejando los valores de $\omega$ para los cuales se cumple:
-                \begin{gather*}
-                    \lvert H_{(\omega)} \rvert > \frac{1}{\sqrt{2}}\\
-                    \frac{1}{\sqrt{(1 - \omega^2 L C)^2 + (\omega R C)^2}} = \frac{1}{\sqrt{2}}\\
-                    (1 - \omega^2 L C)^2 + (\omega R C)^2 - 2 = 0
-                \end{gather*}
-                Utilizando un software de \textit{Computer Algebra System (CAS)}, podemos obtener las raices de la
-                anterior ecuacion, quedando:
+                Para $R=3$, $L=1$ y $C=\frac{1}{2}$, las raices del polinomio anterior son:
                 \begin{equation*}
                     \begin{bmatrix}
-                        j 2.38779440461 & -j 2.38779440461 & 0.837593050781 & -0.837593050781
+                        3.56155281281 & -0.561552812809 & 0.561552812809 & -3.56155281281
                     \end{bmatrix}
                 \end{equation*}
-                
-                De las cuales solo $0.837593050781$ es valida, debido a que no existen frecuencias angulares negativas,
-                ni con componentes imaginarias. Debido a que no hay un limite inferior valido, consideramos al 0 como
-                tal, quedando el ancho de banda del filtro:
+
+                Considerando solamente las raices validas, que son solo las positivas, y aplicando 
+                (\ref{ancho.de.banda.2}):
                 \begin{equation*}
-                    BW = f_2 - f_1 = 0.837593050781 \frac{rad}{s}
+                    BW = \omega_2 - \omega_1 = 3.56 \sfrac{rad}{s} - 0.56 \sfrac{rad}{s} = 3 \sfrac{rad}{s} = 0.47 Hz
                 \end{equation*}
 
             \item \fs{} ¿Que frecuencia de muestreo deberia aplicarse para no perder informacion muestreando este
