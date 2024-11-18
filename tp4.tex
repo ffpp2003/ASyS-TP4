@@ -211,6 +211,19 @@
             \item \fs{} ¿Que frecuencia de muestreo deberia aplicarse para no perder informacion muestreando este
                 sistema? Evaluar hasta caida de 3dB como banda de paso.\\
 
+                Segun el teorema de Nyquist, la frecuencia de muestreo deberia ser:
+                \begin{equation}
+                    \label{nyquist}
+                    f_s > 2f_{max}
+                \end{equation}
+
+                Donde $f_{max}$ es el limite superior del ancho de banda o banda de paso. Entonces, la frecuencia
+                minima de muestreo deberia ser:
+                \begin{gather*}
+                    f_s > 2\frac{\omega_2}{2 \pi}\\
+                    f_s > 1.13 Hz
+                \end{gather*}
+
             \item \fs{} Considerar $T_1 = 1s$ y $T_2 = 0,1s$. Proceder a la discretizacion por dos metodos diferentes,
                 incluida la transformacion bilineal.\\
 
