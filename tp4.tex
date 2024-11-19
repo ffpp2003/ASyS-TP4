@@ -227,6 +227,44 @@
             \item \fs{} Considerar $T_1 = 1s$ y $T_2 = 0,1s$. Proceder a la discretizacion por dos metodos diferentes,
                 incluida la transformacion bilineal.\\
 
+                La Funcion de transferencia de nuestro sistema es:
+                \begin{equation*}
+                    \frac{V_{C(s)}}{V_{(s)}} = H_{(s)} = \frac{1}{1 + s R C + s^2 L C}
+                \end{equation*}
+
+                Para $R=3$, $L=1$ y $C=\frac{1}{2}$, si descomponemos por fracciones simples, nos queda que:
+                \begin{equation*}
+                    H_{(s)} = \frac{2}{s + 1} - \frac{2}{s + 2}
+                \end{equation*}
+
+                Y haciendo antitransformada de Laplace:
+                \begin{equation*}
+                    \mathcal{L}^{-1}\left\{H_{(s)}\right\} = h_{(t)} = 2 \left(e^{-t} - e^{-2 t}\right)
+                \end{equation*}
+
+                Para $T_1$ se va a usar la discretizacion temporal, donde se sustituye $t$ por $kT_1$, quedando:
+                \begin{align*}
+                    h_{(kT_1)} &= 2\left(e^{-k} - e^{-2 k}\right)\\
+                    h_{[n]} &= 2\left(e^{-n} - e^{-2 n}\right)\\
+                    \mathcal{Z}\left\{h_{[n]}\right\} &= H_{(z)} = 2\left(\frac{z}{z - e^{-1}} - \frac{z}{z - e^{-2}} \right)\\
+                    H_{(z)} &= \frac{2 z e (e - 1)}{z^2 e^3 - z e (e - 1) + 1}
+                \end{align*}
+
+                Para $T_2$ se va a usar la transformacion bilineal, la cual establece la siguiente sustitucion:
+                \begin{equation}
+                    \label{bilineal}
+                    s = \frac{2}{T} \frac{z - 1}{z + 1}
+                \end{equation}
+
+                Reemplazando en $H_{(s)}$:
+                \begin{align*}
+                    H_{(z)} &= \frac{2}{\left(20\frac{z - 1}{z + 1} + 1\right)\left(20\frac{z - 1}{z + 1} + 2\right)}\\
+                    H_{(z)} &= \frac{2}{\left(\frac{20z - 20 + z + 1}{z + 1}\right)\left(\frac{20z - 20 + 2z + 2}{z + 1}\right)}\\
+                    H_{(z)} &= \frac{2}{\left(\frac{21z - 19}{z + 1}\right)\left(\frac{22z - 18}{z + 1}\right)}\\
+                    H_{(z)} &= \frac{2}{\frac{462z^2 - 378z - 418z + 342}{(z + 1)^2}}\\
+                    H_{(z)} &= \frac{z^2 + 2z + 1}{231z^2 - 398z + 171}\\
+                \end{align*}
+
             \item \fs{} Obtener la $H_{(z)}$.\\
 
             \item \fs{} Desarrollar la respuesta $h_{[n]}$ al impulso $\delta_{[n]}$ por medio de la transformada Z.\\
