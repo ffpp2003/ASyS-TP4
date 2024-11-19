@@ -280,6 +280,23 @@
 
             \item \fs{} Obtener la $H_{(z)}$.\\
 
+                La respuesta al impulso de nuestro sistema es:
+                \begin{equation*}
+                    h_{(t)} = 2 \left(e^{-t} - e^{-2 t}\right)
+                \end{equation*}
+
+                Si hacemos la sustitucion $t = n$, siendo $n = kT$:
+                \begin{equation*}
+                    h_{(n)} = 2 \left(e^{-n} - e^{-2 n}\right)
+                \end{equation*}
+
+                Aplicando la transformada Z:
+                \begin{align*}
+                    \mathcal{Z} \left\{h_{(n)} \right\} &= H_{(z)} = 2 \left(\frac{z}{z - e^{-T}} - \frac{z}{z - e^{-2 T}}\right)\\
+                    H_{(z)} &= \frac{2 z e^{-T} \left(1 - e^{-T}\right)}{z^2 - z e^{-T} \left(e^{-T} - 1\right) + e^{-3T}}
+                \end{align*}
+
+
             \item \fs{} Desarrollar la respuesta $h_{[n]}$ al impulso $\delta_{[n]}$ por medio de la transformada Z.\\
 
             \item \fs{} Desarrollar la respuesta $\mu_{[n]}$ al impulso $y_{[n]}$ por medio de la transformada Z.\\
