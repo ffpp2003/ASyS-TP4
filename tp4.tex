@@ -384,6 +384,144 @@
 
             \item \fs{} Verificar el TVI y TVF la respuesta en ambos dominios.\\
 
+                El valor inicial en el dominio de Laplace esta definido como:
+                \begin{equation}
+                    \label{tvi.laplace}
+                    x_{(0^+)} = \lim_{s \to \infty} s X_{(s)}
+                \end{equation}
+
+                Para la respuesta al impulso en el dominio de Laplace, el valor inicial es:
+                \begin{equation*}
+                    h_{(0^+)} = \lim_{s \to \infty} \frac{s}{1 + s \frac{3}{2} + s^2 \frac{1}{2}}
+                \end{equation*}
+
+                Como el grado del polinomio denominador es mayor al del numerador, por propiedades de limites queda:
+                \begin{equation*}
+                    h_{(0^+)} = 0
+                \end{equation*}
+
+                Para el dominio $z$, el valor inicial esta definido como:
+                \begin{equation}
+                    \label{tvi.zeta}
+                    x_{[0]} = \lim_{z \to \infty} X_{(z)}
+                \end{equation}
+
+                Para las diferentes discretizaciones de las respuestas al impulso, tenemos:
+
+                {\centering\underline{\textit{Discretizacion Temporal}}\par}
+                \begin{figure}[h!]
+                    \centering
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        $T = T_1$
+                        \begin{align*}
+                            h_{[0]} &= \lim_{z \to \infty} \frac{2 z e (e - 1)}{z^2 e^3 - z e (e + 1) + 1}\\
+                            h_{[0]} &= 0
+                        \end{align*}
+                    \end{minipage}
+                    \hspace{0.5cm}
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        $T = T_2$
+                        \begin{align*}
+                            h_{[0]} &= \lim_{z \to \infty} \frac{2 z e^{\frac{1}{10}} (e^{\frac{1}{10}} - 1)}
+                                {z^2 e^{\frac{3}{10}} - z  e^{\frac{1}{10}}(e^{\frac{1}{10}} + 1) + 1}\\
+                            h_{[0]} &= 0
+                        \end{align*}
+                    \end{minipage}
+                \end{figure}
+
+                {\centering\underline{\textit{Transformacion Bilineal}}\par}
+                \begin{figure}[h!]
+                    \centering
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        $T = T_1$
+                        \begin{align*}
+                            h_{[0]} &= \lim_{z \to \infty} \frac{z^2 + 2z + 1}{6z^2 - 2z}\\
+                            h_{[0]} &= \frac{1}{6}
+                        \end{align*}
+                    \end{minipage}
+                    \hspace{0.5cm}
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        $T = T_2$
+                        \begin{align*}
+                            h_{[0]} &= \lim_{z \to \infty} \frac{z^2 + 2z + 1}{231z^2 - 398z + 171}\\
+                            h_{[0]} &= \frac{1}{231}
+                        \end{align*}
+                    \end{minipage}
+                \end{figure}
+
+                El valor final en el dominio de Laplace esta definido como:
+                \begin{equation}
+                    \label{tvf.laplace}
+                    \lim_{t \to \infty} x_{(t)} = \lim_{s \to 0} s X_{(s)}
+                \end{equation}
+
+                Para la respuesta al impulso en el dominio de Laplace, el valor final es:
+                \begin{align*}
+                    \lim_{t \to \infty} h_{(t)} &= \lim_{s \to 0} \frac{s}{1 + s \frac{3}{2} + s^2 \frac{1}{2}}\\
+                    \lim_{t \to \infty} h_{(t)} &= 0
+                \end{align*}
+
+                Para el dominio $z$, el valor inicial esta definido como:
+                \begin{equation}
+                    \label{tvf.zeta}
+                    \lim_{n \to \infty} x_{[n]} = \lim_{z \to 1} \left(1 - z^{-1}\right) X_{(z)}
+                \end{equation}
+
+                Para las diferentes discretizaciones de las respuestas al impulso, tenemos:
+
+                {\centering\underline{\textit{Discretizacion Temporal}}\par}
+                \begin{figure}[h!]
+                    \centering
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        $T = T_1$
+                        \begin{align*}
+                            \lim_{n \to \infty} h_{[n]} &= \lim_{z \to 1}  \frac{\left(1 - z^{-1}\right) 2 z e (e - 1)}
+                                {z^2 e^3 - z e (e + 1) + 1}\\
+                            \lim_{n \to \infty} h_{[n]} &= 0
+                        \end{align*}
+                    \end{minipage}
+                    \hspace{0.5cm}
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        $T = T_2$
+                        \begin{align*}
+                            \lim_{n \to \infty} h_{[n]} &= \lim_{z \to 1} \frac{\left(1 - z^{-1}\right) 2 z e^{\frac{1}
+                                {10}} (e^{\frac{1}{10}} - 1)}{z^2 e^{\frac{3}{10}} - z  e^{\frac{1}{10}}(e^{
+                                \frac{1}{10}} + 1) + 1}\\
+                            \lim_{n \to \infty} h_{[n]} &= 0
+                        \end{align*}
+                    \end{minipage}
+                \end{figure}
+
+                {\centering\underline{\textit{Transformacion Bilineal}}\par}
+                \begin{figure}[h!]
+                    \centering
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        $T = T_1$
+                        \begin{align*}
+                            \lim_{n \to \infty} h_{[n]} &= \lim_{z \to 1}  \frac{\left(1 - z^{-1}\right) 
+                                \left(z^2 + 2z + 1\right)}{6z^2 - 2z}\\
+                            \lim_{n \to \infty} h_{[n]} &= 0
+                        \end{align*}
+                    \end{minipage}
+                    \hspace{0.5cm}
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        $T = T_2$
+                        \begin{align*}
+                            \lim_{n \to \infty} h_{[n]} &= \lim_{z \to 1} \frac{\left(1 - z^{-1}\right)
+                                \left(z^2 + 2z + 1\right)}{231z^2 - 398z + 171}\\
+                            \lim_{n \to \infty} h_{[n]} &= 0
+                        \end{align*}
+                    \end{minipage}
+                \end{figure}
+
             \item \fs{} Comparar graficamente las respuestas en tiempo continuo y tiempo discreto.\\
 
             \item \fs{} Comparar los TVI y TVF para ambas respuestas, continua y discreta.\\
