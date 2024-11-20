@@ -779,6 +779,35 @@
               \end{table}
             \item \fs{} Bosquejar el diagrama de BODE correspondiente para los dos filtros, y determimar $\omega_c$
                 del filtro.\\
+              \begin{figure}[H]
+                \centering
+                \includegraphics[width=1\linewidth]{./images/BodeHs.png}
+                \caption{Diagrama de Bode para $H_s$}
+              \end{figure}
+              \begin{figure}[H]
+                \centering
+                \includegraphics[width=1\linewidth]{./images/BodeD1.png}
+                \caption{Diagrama de Bode para la discretizacion temporal con $T=1s$}
+              \end{figure}
+              \begin{figure}[H]
+                \centering
+                \includegraphics[width=1\linewidth]{./images/BodeB1.png}
+                \caption{Diagrama de Bode para la tansformacion bilineal con $T=1s$}
+              \end{figure}
+              \begin{figure}[H]
+                \centering
+                \includegraphics[width=1\linewidth]{./images/BodeD2.png}
+                \caption{Diagrama de Bode para la discretizacion temporal con $T=0.1s$}
+              \end{figure}
+              \begin{figure}[H]
+                \centering
+                \includegraphics[width=1\linewidth]{./images/BodeB2.png}
+                \caption{Diagrama de Bode para la tansformacion bilineal con $T=0.1s$}
+              \end{figure}
+
+              Para encontrar la frecuencia de corte $\omega_c$ buscamos el corte con los $-3dB$
+              en el diagrama de amplitud-frecuencia para $H_s$ obteniendo:
+              $$\omega_c=0.84 \hspace{1mm} rad/s$$
 
 
                 La frecuencia de corte $\omega_c$ es el valor de $\omega$, donde $Z_{(\omega)}$ alcanza su minimo. Esto significa
