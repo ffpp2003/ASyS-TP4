@@ -98,8 +98,8 @@
     \myemptypage
 
     \chapter{Ejercicio 1}
-        Considerar la ecuacion diferencial del TP2, Ejercicio 4 (Circuito Electrico RLC) tratadas por medio de
-        convolucion temporal y Transformada de Laplace:
+        Considerar la ecuación diferencial del TP2, Ejercicio 4 (Circuito Eléctrico RLC) tratadas por medio de
+        convolución temporal y Transformada de Laplace:
 
         \begin{enumerate}[label=\alph*), left=0pt]
             \item \fs{} ¿Que ancho de banda tiene el filtro en tiempo continuo?\\
@@ -134,19 +134,19 @@
                     \lvert H_{(\omega)} \rvert > \frac{1}{\sqrt{2}}
                 \end{equation}
 
-                Para determinar la funcion de transferencia del sistema, primero debemos modelar el circuito. Sabiendo
-                que la tension $v(t)$ esta determinada por:
+                Para determinar la función de transferencia del sistema, primero debemos modelar el circuito. Sabiendo
+                que la tensión $v(t)$ esta determinada por:
                 \begin{equation*}
                     v_{(t)} = Ri_{(t)} + L \frac{d}{dt} i_{(t)} + \frac{1}{C} \int_{0}^{t} i_{(\tau)} d\tau
                 \end{equation*}
 
-                Si aplicamos la transformada de Fourier tal cual esta la ecuacion, nos quedaria:
+                Si aplicamos la transformada de Fourier tal cual esta la ecuación, nos quedaría:
                 \begin{equation*}
                     \mathcal{F} \left\{ v_{(t)} \right\} = V_{(\omega)} = R I_{(\omega)} + j \omega L I_{(\omega)} +
                         \frac{1}{j \omega C} I_{(\omega)}
                 \end{equation*}
 
-                Se sabe ademas, que la impedancia de un elemento electrico esta definida por:
+                Se sabe ademas, que la impedancia de un elemento eléctrico esta definida por:
                 \begin{equation}
                     \label{impedancia}
                     Z_{(\omega)} = \frac{V_{(\omega)}}{I_{(\omega)}}
@@ -157,8 +157,8 @@
                     Z_{T(\omega)} = R + j \left(\omega L - \frac{1}{\omega C}\right)\\
                 \end{equation*}
 
-                El valor minimo de $Z_{(\omega)}$ se va a alcanzar cuando la parte imaginaria sea nula. Esto significa
-                que cuando $Z_{(\omega)}$ sea minima, la intensidad sera maxima, y por lo tanto se podra determinar la
+                El valor mínimo de $Z_{(\omega)}$ se va a alcanzar cuando la parte imaginaria sea nula. Esto significa
+                que cuando $Z_{(\omega)}$ sea mínima, la intensidad sera máxima, y por lo tanto se podrá determinar la
                 frecuencia de corte $\omega_c$:
                 \begin{gather*}
                     \omega L - \frac{1}{\omega C} = 0\\
@@ -197,37 +197,37 @@
                     \omega^4 L^2 - \omega^2 \left(\frac{R^2 C + 2 L}{C}\right) + C^{-2} &= 0\\
                 \end{align*}
 
-                Para $R=3$, $L=1$ y $C=\frac{1}{2}$, las raices del polinomio anterior son:
+                Para $R=3$, $L=1$ y $C=\frac{1}{2}$, las raíces del polinomio anterior son:
                 \begin{equation*}
                     \begin{bmatrix}
                         3.56155281281 & -0.561552812809 & 0.561552812809 & -3.56155281281
                     \end{bmatrix}
                 \end{equation*}
 
-                Considerando solamente las raices validas, que son solo las positivas, y aplicando 
+                Considerando solamente las raíces validas, que son solo las positivas, y aplicando 
                 (\ref{ancho.de.banda.2}):
                 \begin{equation*}
                     BW = \omega_2 - \omega_1 = 3.56 \sfrac{rad}{s} - 0.56 \sfrac{rad}{s} = 3 \sfrac{rad}{s} = 0.47 Hz
                 \end{equation*}
 
-            \item \fs{} ¿Que frecuencia de muestreo deberia aplicarse para no perder informacion muestreando este
-                sistema? Evaluar hasta caida de 3dB como banda de paso.\\
+            \item \fs{} ¿Que frecuencia de muestreo debería aplicarse para no perder información maestreando este
+                sistema? Evaluar hasta caída de 3dB como banda de paso.\\
 
-                Segun el teorema de Nyquist, la frecuencia de muestreo deberia ser:
+                Según el teorema de Nyquist, la frecuencia de muestreo debería ser:
                 \begin{equation}
                     \label{nyquist}
                     f_s > 2f_{max}
                 \end{equation}
 
                 Donde $f_{max}$ es el limite superior del ancho de banda o banda de paso. Entonces, la frecuencia
-                minima de muestreo deberia ser:
+                mínima de muestreo debería ser:
                 \begin{gather*}
                     f_s > 2\frac{\omega_2}{2 \pi}\\
                     f_s > 1.13 Hz
                 \end{gather*}
 
-            \item \fs{} Considerar $T_1 = 1s$ y $T_2 = 0,1s$. Proceder a la discretizacion por dos metodos diferentes,
-                incluida la transformacion bilineal.\\
+            \item \fs{} Considerar $T_1 = 1s$ y $T_2 = 0,1s$. Proceder a la discretización por dos métodos diferentes,
+                incluida la transformación bilineal.\\
 
                 Para obtener la función de transferencia de nuestro sistema planteamos primero la impedancia:
                 $$Z_{(s)} = R + \frac{1}{sC} + sL$$
@@ -251,7 +251,7 @@
                   \mathcal{L}^{-1}\left\{H_{(s)}\right\} = h_{(t)} = 2 \left(e^{-t} - e^{-2 t}\right)\mu_{(t)}
                 \end{equation*}
 
-                Para la discretizacion temporal, se sustituye $t$ por $kT$, quedando:
+                Para la discretización temporal, se sustituye $t$ por $kT$, quedando:
                 \begin{figure}[!h]
                     \centering
                     \begin{minipage}{0.4\textwidth}
@@ -278,7 +278,7 @@
                     \end{minipage}
                 \end{figure}
 
-                La transformacion bilineal, establece la siguiente sustitucion:
+                La transformación bilineal, establece la siguiente sustitución:
                 \begin{equation}
                     \label{bilineal}
                     s = \frac{2}{T} \frac{z - 1}{z + 1}
@@ -320,7 +320,7 @@
                     h_{(t)} = 2 \left(e^{-t} - e^{-2 t}\right)
                 \end{equation*}
 
-                Si hacemos la sustitucion $t = n$, siendo $n = kT$:
+                Si hacemos la sustitución $t = n$, siendo $n = kT$:
                 \begin{equation*}
                     h_{[n]} = 2 \left(e^{-n} - e^{-2 n}\right)
                 \end{equation*}
@@ -355,7 +355,7 @@
                     \end{minipage}
                 \end{figure}
 
-                Para las discretizaciones por transformacion bilineal:
+                Para las discretizaciones por transformación bilineal:
 
                 \textit{Para $T = T_1$:}
                 \begin{align*}
@@ -382,7 +382,7 @@
                 \end{align*}
 
 
-            \item \fs{} Desarrollar la respuesta $y_{[n]}$ al escalon $\mu_{[n]}$ por medio de la transformada Z.\\
+            \item \fs{} Desarrollar la respuesta $y_{[n]}$ al escalón $\mu_{[n]}$ por medio de la transformada Z.\\
 
                 Para las discretizaciones directas:
 
@@ -403,7 +403,7 @@
                     y_{[n]} &= 2\left( \frac{1 - \left(\frac{1}{e^{\frac{1}{10}}}\right)^{(n+1)}}{1 - e^{-{\frac{1}{10}}}} - \frac{1 - \left(\frac{1}{e^{\frac{1}{5}}}\right)^{(n+1)}}{1 - e^{-\frac{1}{5}}} \right) \mu_{[n]}
                 \end{align*}
 
-                Para las discretizaciones por transformacion bilineal:
+                Para las discretizaciones por transformación bilineal:
 
                 \textit{Para $T = T_1$:}
                 \begin{align*}
@@ -450,7 +450,7 @@
 
                 Para las diferentes discretizaciones de las respuestas al impulso, tenemos:
 
-                {\centering\underline{\textit{Discretizacion Temporal}}\par}
+                {\centering\underline{\textit{Discretización Temporal}}\par}
                 \begin{figure}[h!]
                     \centering
                     \begin{minipage}{0.4\textwidth}
@@ -473,7 +473,7 @@
                     \end{minipage}
                 \end{figure}
 
-                {\centering\underline{\textit{Transformacion Bilineal}}\par}
+                {\centering\underline{\textit{Transformación Bilineal}}\par}
                 \begin{figure}[h!]
                     \centering
                     \begin{minipage}{0.4\textwidth}
@@ -515,7 +515,7 @@
 
                 Para las diferentes discretizaciones de las respuestas al impulso, tenemos:
 
-                {\centering\underline{\textit{Discretizacion Temporal}}\par}
+                {\centering\underline{\textit{Discretización Temporal}}\par}
                 \begin{figure}[h!]
                     \centering
                     \begin{minipage}{0.4\textwidth}
@@ -540,7 +540,7 @@
                     \end{minipage}
                 \end{figure}
 
-                {\centering\underline{\textit{Transformacion Bilineal}}\par}
+                {\centering\underline{\textit{Transformación Bilineal}}\par}
                 \begin{figure}[h!]
                     \centering
                     \begin{minipage}{0.4\textwidth}
@@ -564,7 +564,7 @@
                     \end{minipage}
                 \end{figure}
 
-                Para la respuesta al escalon unitario en el dominio de Laplace, aplicando (\ref{tvi.laplace}) el valor inicial es:
+                Para la respuesta al escalón unitario en el dominio de Laplace, aplicando (\ref{tvi.laplace}) el valor inicial es:
                 \begin{equation*}
                     h_{(0^+)} = \lim_{s \to \infty} \frac{2s}{s^3 + 3s^2 + 2s}
                 \end{equation*}
@@ -574,9 +574,9 @@
                     h_{(0^+)} = 0
                 \end{equation*}
 
-                Para las diferentes discretizaciones de las respuestas al escalon unitario, aplicando (\ref{tvi.zeta}) tenemos:
+                Para las diferentes discretizaciones de las respuestas al escalón unitario, aplicando (\ref{tvi.zeta}) tenemos:
 
-                {\centering\underline{\textit{Discretizacion Temporal}}\par}
+                {\centering\underline{\textit{Discretización Temporal}}\par}
                 $T = T_1$
                 \begin{align*}
                     h_{[0]} &= \lim_{z \to \infty} \frac{2 z^2  (e^2 - e)}{e^3z^3-(e^3+e^2+e)z^2+(e^2+e+1)z-1}\\
@@ -590,7 +590,7 @@
                     h_{[0]} &= 0
                 \end{align*}
 
-                {\centering\underline{\textit{Transformacion Bilineal}}\par}
+                {\centering\underline{\textit{Transformación Bilineal}}\par}
                 \begin{figure}[h!]
                     \centering
                     \begin{minipage}{0.4\textwidth}
@@ -612,13 +612,13 @@
                     \end{minipage}
                 \end{figure}
 
-                Para la respuesta al escalon en el dominio de Laplace, aplicando (\ref{tvf.laplace}), el valor final es:
+                Para la respuesta al escalón en el dominio de Laplace, aplicando (\ref{tvf.laplace}), el valor final es:
                 \begin{align*}
                     \lim_{t \to \infty} h_{(t)} &= \lim_{s \to 0} \frac{2s}{s^3 + 3s^2 + 25s} = \frac{0}{0}\\
                     \lim_{t \to \infty} h_{(t)} &= \lim_{s \to 0} \frac{2}{3s^2 + 6s + 2} = \frac{2}{2} = 1
                 \end{align*}
 
-                Para las diferentes discretizaciones de las respuestas al escalon, aplicando (\ref{tvf.zeta}) tenemos:
+                Para las diferentes discretizaciones de las respuestas al escalón, aplicando (\ref{tvf.zeta}) tenemos:
 
                 {\centering\underline{\textit{Discretizacion Temporal}}\par}
                 $T = T_1$
@@ -630,7 +630,7 @@
                 %\begin{align*}
                 %\end{align*}
 
-                {\centering\underline{\textit{Transformacion Bilineal}}\par}
+                {\centering\underline{\textit{Transformación Bilineal}}\par}
                 $T = T_1$
                 \begin{align*}
                     \lim_{n \to \infty} h_{[n]} &= \lim_{z\to{1}} \frac{(1-z^{-1})(z^3+2z^2+z)}{6z^3-8z^2+2z} = \frac{0}{0}\\
@@ -643,7 +643,7 @@
                     \lim_{n \to \infty} h_{[n]} &= \lim_{z \to 1} \frac{3z^2+4z+1-2z-2}{693z^2-1258z+569} = \frac{9}{9} = 1
                 \end{align*}
 
-            \item \fs{} Comparar graficamente las respuestas en tiempo continuo y tiempo discreto.\\
+            \item \fs{} Comparar gráficamente las respuestas en tiempo continuo y tiempo discreto.\\
               \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.7\linewidth]{./images/ej7.1.jpeg}
@@ -724,22 +724,22 @@
               \begin{figure}[H]
                 \centering
                 \includegraphics[width=1\linewidth]{./images/BodeD1.png}
-                \caption{Diagrama de Bode para la discretizacion temporal con $T=1s$}
+                \caption{Diagrama de Bode para la discretización temporal con $T=1s$}
               \end{figure}
               \begin{figure}[H]
                 \centering
                 \includegraphics[width=1\linewidth]{./images/BodeB1.png}
-                \caption{Diagrama de Bode para la tansformacion bilineal con $T=1s$}
+                \caption{Diagrama de Bode para la transformación bilineal con $T=1s$}
               \end{figure}
               \begin{figure}[H]
                 \centering
                 \includegraphics[width=1\linewidth]{./images/BodeD2.png}
-                \caption{Diagrama de Bode para la discretizacion temporal con $T=0.1s$}
+                \caption{Diagrama de Bode para la discretización temporal con $T=0.1s$}
               \end{figure}
               \begin{figure}[H]
                 \centering
                 \includegraphics[width=1\linewidth]{./images/BodeB2.png}
-                \caption{Diagrama de Bode para la tansformacion bilineal con $T=0.1s$}
+                \caption{Diagrama de Bode para la transformación bilineal con $T=0.1s$}
               \end{figure}
 
               Para encontrar la frecuencia de corte $\omega_c$ buscamos el corte con los $-3dB$
@@ -767,3 +767,4 @@
         \end{enumerate}
 
 \end{document}
+
