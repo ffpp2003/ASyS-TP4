@@ -3,6 +3,8 @@
 \usepackage{enumitem} %permite el uso de letras para enumerar
 \usepackage{graphicx} %para las imágenes
 \usepackage{float} %para fijar las imágenes
+\usepackage{booktabs} %para fijar las imágenes
+\renewcommand{\arraystretch}{2} % Escala la altura de las filas
 
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning} %para hacer diagramas de bloques
@@ -523,9 +525,78 @@
                 \end{figure}
 
             \item \fs{} Comparar graficamente las respuestas en tiempo continuo y tiempo discreto.\\
+              \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\linewidth]{./images/ej7.1.jpeg}
+                \caption{Comparación de respuestas al impulso. $T = 1s$}
+                \label{fig:comparacion}
+              \end{figure}
+              \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\linewidth]{./images/ej7.2.jpeg}
+                \caption{Comparación de respuestas al impulso. $T = 0.1s$}
+                \label{fig:comparacion}
+              \end{figure}
+
 
             \item \fs{} Comparar los TVI y TVF para ambas respuestas, continua y discreta.\\
+              \begin{table}[h!]
+                  \centering
+                  \begin{minipage}{0.45\textwidth}
+                      \centering
+                      \begin{tabular}{|c|c|c|}
+                          \hline
+                          \multicolumn{3}{|c|}{\textbf{TVI}} \\ \hline
+                          \textbf{Continua:} & \multicolumn{2}{|c|}{$h_{(0^+)}=0$} \\ \hline
+                          \textbf{Discreta:} & \textbf{Directa} & \textbf{Bilineal} \\ \hline
+                          $T=1s$ & $h_{[0]}=0$ & $h_{[0]}=\frac{1}{6}$ \\ \hline
+                          $T=0.1s$ & $h_{[0]}=0$ & $h_{[0]}=\frac{1}{231}$ \\ \hline
+                      \end{tabular}
+                  \end{minipage}
+                  \hfill
+                  \begin{minipage}{0.45\textwidth}
+                      \centering
+                      \begin{tabular}{|c|c|c|}
+                          \hline
+                          \multicolumn{3}{|c|}{\textbf{TVF}} \\ \hline
+                          \textbf{Continua:} & \multicolumn{2}{|c|}{$\lim_{n \to \infty}h_{(n)}=0$} \\ \hline
+                          \textbf{Discreta:} & \textbf{Directa} & \textbf{Bilineal} \\ \hline
+                          $T=1s$ & $\lim_{n \to \infty}h_{[n]}=0$ & $\lim_{n \to \infty}h_{[n]}=0$\\ \hline
+                          $T=0.1s$ & $\lim_{n \to \infty}h_{[n]}=0$ & $\lim_{n \to \infty}h_{[n]}=0$ \\ \hline
+                      \end{tabular}
+                  \end{minipage}
+                  \caption{Comparación TVI y TVF para $h$}
+                  \label{tab:ejemplo}
+              \end{table}
 
+              \begin{table}[H]
+                  \centering
+                  \begin{minipage}{0.45\textwidth}
+                      \centering
+                      \begin{tabular}{|c|c|c|}
+                          \hline
+                          \multicolumn{3}{|c|}{\textbf{TVI}} \\ \hline
+                          \textbf{Continua:} & \multicolumn{2}{|c|}{$h_{(0^+)}=0$} \\ \hline
+                          \textbf{Discreta:} & \textbf{Directa} & \textbf{Bilineal} \\ \hline
+                          $T=1s$ & $h_{[0]}=0$ & $h_{[0]}=\frac{1}{6}$ \\ \hline
+                          $T=0.1s$ & $h_{[0]}=0$ & $h_{[0]}=\frac{1}{231}$ \\ \hline
+                      \end{tabular}
+                  \end{minipage}
+                  \hfill
+                  \begin{minipage}{0.45\textwidth}
+                      \centering
+                      \begin{tabular}{|c|c|c|}
+                          \hline
+                          \multicolumn{3}{|c|}{\textbf{TVF}} \\ \hline
+                          \textbf{Continua:} & \multicolumn{2}{|c|}{$\lim_{n \to \infty}h_{(n)}=0$} \\ \hline
+                          \textbf{Discreta:} & \textbf{Directa} & \textbf{Bilineal} \\ \hline
+                          $T=1s$ & $\lim_{n \to \infty}h_{[n]}=0$ & $\lim_{n \to \infty}h_{[n]}=0$\\ \hline
+                          $T=0.1s$ & $\lim_{n \to \infty}h_{[n]}=0$ & $\lim_{n \to \infty}h_{[n]}=0$ \\ \hline
+                      \end{tabular}
+                  \end{minipage}
+                  \caption{Comparación TVI y TVF de $y_{[n]}$ para $x_{[n]}={\mu_{[n]}}$}
+                  \label{tab:ejemplo}
+              \end{table}
             \item \fs{} Bosquejar el diagrama de BODE correspondiente para los dos filtros, y determimar $\omega_c$
                 del filtro.\\
 
