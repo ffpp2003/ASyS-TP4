@@ -242,40 +242,66 @@
                     \mathcal{L}^{-1}\left\{H_{(s)}\right\} = h_{(t)} = 2 \left(e^{-t} - e^{-2 t}\right)
                 \end{equation*}
 
-                Para $T_1$ se va a usar la discretizacion temporal, donde se sustituye $t$ por $kT_1$, quedando:
-                \begin{align*}
-                    h_{(kT_1)} &= 2\left(e^{-k} - e^{-2 k}\right)\\
-                    h_{[n]} &= 2\left(e^{-n} - e^{-2 n}\right)\\
-                    \mathcal{Z}\left\{h_{[n]}\right\} &= H_{(z)} = 2\left(\frac{z}{z - e^{-1}} - \frac{z}{z - e^{-2}} \right)\\
-                    H_{(z)} &= \frac{2 z e (e - 1)}{z^2 e^3 - z e (e - 1) + 1}
-                \end{align*}
+                Para la discretizacion temporal, se sustituye $t$ por $kT$, quedando:
+                \begin{figure}[!h]
+                    \centering
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        \textit{Para $T = T_1$:}
+                        \begin{align*}
+                            h_{(kT_1)} &= 2\left(e^{-k} - e^{-2 k}\right)\\
+                            h_{[n]} &= 2\left(e^{-n} - e^{-2 n}\right)\\
+                            \mathcal{Z}\left\{h_{[n]}\right\} &= 2\left(\frac{z}{z - e^{-1}} - \frac{z}{z - e^{-2}} \right)\\
+                            H_{(z)} &= \frac{2 z e (e - 1)}{z^2 e^3 - z e (e + 1) + 1}
+                        \end{align*}
+                    \end{minipage}
+                    \hspace{0.5cm}
+                    \centering
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        \textit{Para $T = T_2$:}
+                        \begin{align*}
+                            h_{(kT_2)} &= 2\left(e^{-\frac{k}{10}} - e^{-\frac{k}{5}}\right)\\
+                            h_{[n]} &= 2\left(e^{-\frac{n}{10}} - e^{-\frac{n}{5}}\right)\\
+                            \mathcal{Z}\left\{h_{[n]}\right\} &= 2\left(\frac{z}{z - e^{-\frac{1}{10}}} - \frac{z}{z - e^{-\frac{1}{5}}} \right)\\
+                            H_{(z)} &= \frac{2 z e^{\frac{1}{10}} (e^{\frac{1}{10}} - 1)}{z^2 e^{\frac{3}{10}} - z  e^{\frac{1}{10}}(e^{\frac{1}{10}} + 1) + 1}
+                        \end{align*}
+                    \end{minipage}
+                \end{figure}
 
-                Para $T_2$ se va a usar la transformacion bilineal, la cual establece la siguiente sustitucion:
+                La transformacion bilineal, establece la siguiente sustitucion:
                 \begin{equation}
                     \label{bilineal}
                     s = \frac{2}{T} \frac{z - 1}{z + 1}
                 \end{equation}
 
                 Reemplazando en $H_{(s)}$:
-                \begin{align*}
-                    H_{(z)} &= \frac{2}{\left(20\frac{z - 1}{z + 1} + 1\right)\left(20\frac{z - 1}{z + 1} + 2\right)}\\
-                    H_{(z)} &= \frac{2}{\left(\frac{20z - 20 + z + 1}{z + 1}\right)\left(\frac{20z - 20 + 2z + 2}{z + 1}\right)}\\
-                    H_{(z)} &= \frac{2}{\left(\frac{21z - 19}{z + 1}\right)\left(\frac{22z - 18}{z + 1}\right)}\\
-                    H_{(z)} &= \frac{2}{\frac{462z^2 - 378z - 418z + 342}{(z + 1)^2}}\\
-                    H_{(z)} &= \frac{z^2 + 2z + 1}{231z^2 - 398z + 171}\\
-                \end{align*}
-
-                Aqui un grafico de las tres respuestas al impulso en variable real superpuestas:
-                \begin{figure}[h]
+                \begin{figure}[!h]
                     \centering
-                    \includegraphics[width=1\textwidth]{./images/image1.png}
-                \end{figure}
-
-                Como se observa, la transformacion bilineal sufre alteraciones en la amplitud. Multiplicando por 10
-                cada valor de amplitud, nos queda un grafico como el siguiente:
-                \begin{figure}[h]
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        \textit{Para $T = T_1$:}
+                        \begin{align*}
+                            H_{(z)} &= \frac{2}{\left(2\frac{z - 1}{z + 1} + 1\right)\left(2\frac{z - 1}{z + 1} + 2\right)}\\
+                            H_{(z)} &= \frac{2}{\left(\frac{2z - 2 + z + 1}{z + 1}\right)\left(\frac{2z - 2 + 2z + 2}{z + 1}\right)}\\
+                            H_{(z)} &= \frac{2}{\left(\frac{3z - 1}{z + 1}\right)\left(\frac{4z}{z + 1}\right)}\\
+                            H_{(z)} &= \frac{2}{\frac{12z^2 - 4z}{(z + 1)^2}}\\
+                            H_{(z)} &= \frac{z^2 + 2z + 1}{6z^2 - 2z}
+                        \end{align*}
+                    \end{minipage}
+                    \hspace{0.5cm}
                     \centering
-                    \includegraphics[width=1\textwidth]{./images/image2.png}
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        \textit{Para $T = T_2$:}
+                        \begin{align*}
+                            H_{(z)} &= \frac{2}{\left(20\frac{z - 1}{z + 1} + 1\right)\left(20\frac{z - 1}{z + 1} + 2\right)}\\
+                            H_{(z)} &= \frac{2}{\left(\frac{20z - 20 + z + 1}{z + 1}\right)\left(\frac{20z - 20 + 2z + 2}{z + 1}\right)}\\
+                            H_{(z)} &= \frac{2}{\left(\frac{21z - 19}{z + 1}\right)\left(\frac{22z - 18}{z + 1}\right)}\\
+                            H_{(z)} &= \frac{2}{\frac{462z^2 - 378z - 418z + 342}{(z + 1)^2}}\\
+                            H_{(z)} &= \frac{z^2 + 2z + 1}{231z^2 - 398z + 171}
+                        \end{align*}
+                    \end{minipage}
                 \end{figure}
 
             \item \fs{} Obtener la $H_{(z)}$.\\
@@ -287,7 +313,7 @@
 
                 Si hacemos la sustitucion $t = n$, siendo $n = kT$:
                 \begin{equation*}
-                    h_{(n)} = 2 \left(e^{-n} - e^{-2 n}\right)
+                    h_{[n]} = 2 \left(e^{-n} - e^{-2 n}\right)
                 \end{equation*}
 
                 Aplicando la transformada Z:
@@ -299,7 +325,62 @@
 
             \item \fs{} Desarrollar la respuesta $h_{[n]}$ al impulso $\delta_{[n]}$ por medio de la transformada Z.\\
 
-            \item \fs{} Desarrollar la respuesta $\mu_{[n]}$ al impulso $y_{[n]}$ por medio de la transformada Z.\\
+                Para las discretizaciones directas:
+                \begin{figure}[!h]
+                    \centering
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        \textit{Para $T = T_1$:}
+                        \begin{align*}
+                            H_{(z)} &= 2\left(\frac{z}{z - e^{-1}} - \frac{z}{z - e^{-2}} \right)\\
+                            \mathcal{Z}^{-1}\left\{H_{(z)}\right\} &= 2\left(e^{-n} - e^{-2 n}\right)
+                        \end{align*}
+                    \end{minipage}
+                    \hspace{0.5cm}
+                    \centering
+                    \begin{minipage}{0.4\textwidth}
+                        \centering
+                        \textit{Para $T = T_2$:}
+                        \begin{align*}
+                            H_{(z)} &= 2\left(\frac{z}{z - e^{-\frac{1}{10}}} - \frac{z}{z - e^{-\frac{1}{5}}} \right)\\
+                            \mathcal{Z}^{-1}\left\{H_{(z)}\right\} &= 2\left(e^{-\frac{n}{10}} - e^{-\frac{n}{5}}\right)
+                        \end{align*}
+                    \end{minipage}
+                \end{figure}
+
+                Para las discretizaciones por transformacion bilineal:
+
+                \begin{minipage}{\textwidth}
+                    \centering
+                    \textit{Para $T = T_1$:}
+                    \begin{align*}
+                        H_{(z)} &= \frac{z^2 + 2z + 1}{6z^2 - 2z}\\
+                        H_{(z)} &= \frac{1}{6} - \frac{1}{2z} + \frac{\frac{8}{3}}{3z - 1}\\
+                        H_{(z)} &= \frac{1}{6} - \frac{1}{2z} + \frac{8}{9z}\frac{z}{z - \frac{1}{3}}\\
+                        \mathcal{Z}^{-1}\left\{H_{(z)}\right\} &= \frac{1}{6} \delta_{[n]} - \frac{1}{2}
+                            \delta_{[n - 1]} + \frac{8}{9} \delta_{[n - 1]} * \left(\frac{1}{3}\right)^n \mu_{[n]}\\
+                        h_{[n]} &= \frac{1}{6} \delta_{[n]} - \frac{1}{2} \delta_{[n - 1]} + \frac{8}{3}
+                            \left(\frac{1}{3}\right)^n \mu_{[n - 1]}
+                    \end{align*}
+                \end{minipage}
+                \begin{minipage}{\textwidth}
+                    \centering
+                    \textit{Para $T = T_2$:}
+                    \begin{align*}
+                        H_{(z)} &= \frac{z^2 + 2z + 1}{231z^2 - 398z + 171}\\
+                        H_{(z)} &= \frac{1}{231} + \frac{\frac{80}{21}}{21z - 19} - \frac{\frac{20}{11}}{11z - 9}\\
+                        H_{(z)} &= \frac{1}{231} + \frac{80}{21^2 z} \frac{z}{z - \frac{19}{21}} - \frac{20}{11^2 z}
+                            \frac{z}{z - \frac{9}{11}}\\
+                        \mathcal{Z}^{-1}\left\{H_{(z)}\right\} &= \frac{1}{231} \delta_{[n]} + \frac{80}{21^2}
+                            \delta_{[n - 1]} * \left(\frac{19}{21}\right)^n \mu_{[n]} - \frac{20}{11^2}
+                            \delta_{[n - 1]} * \left(\frac{9}{11}\right)^n \mu_{[n]}\\
+                        h_{[n]} &= \frac{1}{231} \delta_{[n]} + \left( \frac{80}{21} \left(\frac{19}{21}\right)^{n} -
+                            \frac{20}{11} \left(\frac{9}{11}\right)^{n} \right) \mu_{[n - 1]}
+                    \end{align*}
+                \end{minipage}
+
+
+            \item \fs{} Desarrollar la respuesta $y_{[n]}$ al escalon $\mu_{[n]}$ por medio de la transformada Z.\\
 
             \item \fs{} Verificar el TVI y TVF para ambas respuestas en ambos dominios.\\
 
