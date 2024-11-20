@@ -227,7 +227,14 @@
             \item \fs{} Considerar $T_1 = 1s$ y $T_2 = 0,1s$. Proceder a la discretizacion por dos metodos diferentes,
                 incluida la transformacion bilineal.\\
 
-                La Funcion de transferencia de nuestro sistema es:
+                Para obtener la función de transferencia de nuestro sistema planteamos primero la impedancia:
+                $$Z_{(s)} = R + \frac{1}{sC} + sL$$
+                $$Z_{(s)} = \frac{1+sRC+s^2LC}{sC}$$
+                La caída de tensión en el capacitor, por ley de Ohm, es:
+                $$V_c=\frac{I_s}{sC}$$
+                $$V_c=\frac{\frac{V_s}{Z_s}}{sC}$$
+                $$V_c=V_s\frac{1}{Z_s sC}$$
+                finalmente:
                 \begin{equation*}
                     \frac{V_{C(s)}}{V_{(s)}} = H_{(s)} = \frac{1}{1 + s R C + s^2 L C}
                 \end{equation*}
