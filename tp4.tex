@@ -564,15 +564,16 @@
                     \end{minipage}
                 \end{figure}
 
+                %TVI y TVF de la respuesta al escalon unitario
                 El valor inicial en el dominio de Laplace esta definido como:
                 \begin{equation}
                     \label{tvi.laplace}
                     x_{(0^+)} = \lim_{s \to \infty} s X_{(s)}
                 \end{equation}
 
-                Para la respuesta al impulso en el dominio de Laplace, el valor inicial es:
+                Para la respuesta al escalon unitario en el dominio de Laplace, el valor inicial es:
                 \begin{equation*}
-                    h_{(0^+)} = \lim_{s \to \infty} \frac{s}{1 + s \frac{3}{2} + s^2 \frac{1}{2}}
+                    h_{(0^+)} = \lim_{s \to \infty} \frac{2s}{s^3 + 3s^2 + 2s}
                 \end{equation*}
 
                 Como el grado del polinomio denominador es mayor al del numerador, por propiedades de limites queda:
@@ -586,7 +587,7 @@
                     x_{[0]} = \lim_{z \to \infty} X_{(z)}
                 \end{equation}
 
-                Para las diferentes discretizaciones de las respuestas al impulso, tenemos:
+                Para las diferentes discretizaciones de las respuestas al escalon unitario, tenemos:
 
                 {\centering\underline{\textit{Discretizacion Temporal}}\par}
                 \begin{figure}[h!]
@@ -595,7 +596,7 @@
                         \centering
                         $T = T_1$
                         \begin{align*}
-                            h_{[0]} &= \lim_{z \to \infty} \frac{2 z e (e - 1)}{z^2 e^3 - z e (e + 1) + 1}\\
+                            h_{[0]} &= \lim_{z \to \infty} \frac{2 z^2  (e^2 - e)}{e^3z^3-(e^3+e^2+e)z^2+(e^2+e+1)z-1}\\
                             h_{[0]} &= 0
                         \end{align*}
                     \end{minipage}
@@ -604,8 +605,9 @@
                         \centering
                         $T = T_2$
                         \begin{align*}
-                            h_{[0]} &= \lim_{z \to \infty} \frac{2 z e^{\frac{1}{10}} (e^{\frac{1}{10}} - 1)}
-                                {z^2 e^{\frac{3}{10}} - z  e^{\frac{1}{10}}(e^{\frac{1}{10}} + 1) + 1}\\
+                            h_{[0]} &= \lim_{z \to \infty} \frac{2 z^2 (e^{\frac{1}{5}} - e^{\frac{1}{10}})}
+                                {e^{\frac{3}{10}}z^3 - (e^{\frac{3}{10}} + e^{\frac{1}{5}} + e^{\frac{1}{10}})z^2
+                                + (e^{\frac{1}{5}} + e^{\frac{1}{10}} + 1)z - 1}\\
                             h_{[0]} &= 0
                         \end{align*}
                     \end{minipage}
@@ -618,7 +620,7 @@
                         \centering
                         $T = T_1$
                         \begin{align*}
-                            h_{[0]} &= \lim_{z \to \infty} \frac{z^2 + 2z + 1}{6z^2 - 2z}\\
+                            h_{[0]} &= \lim_{z \to \infty} \frac{z^3 + 2z^2 + z}{6z^3 - 8z^2 + 2z}\\
                             h_{[0]} &= \frac{1}{6}
                         \end{align*}
                     \end{minipage}
@@ -627,7 +629,7 @@
                         \centering
                         $T = T_2$
                         \begin{align*}
-                            h_{[0]} &= \lim_{z \to \infty} \frac{z^2 + 2z + 1}{231z^2 - 398z + 171}\\
+                            h_{[0]} &= \lim_{z \to \infty} \frac{z^3 + 2z^2 + z}{231z^3 - 629z^2 + 569z - 171}\\
                             h_{[0]} &= \frac{1}{231}
                         \end{align*}
                     \end{minipage}
